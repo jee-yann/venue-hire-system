@@ -49,19 +49,3 @@ public class VenueHireSystem {
   }
 }
 
-public class Venue {
-
-  private String name;
-  private String code;
-  private Integer capacityInput;
-  private Integer hireFeeInput; 
-
-  public Venue(name, code, capacityInput, hireFeeInput) {
-    self.name = name;
-    self.code = code;
-    self.capacityInput = capacityInput;
-    self.hireFeeInput = hireFeeInput;
-
-  }
-
-}
