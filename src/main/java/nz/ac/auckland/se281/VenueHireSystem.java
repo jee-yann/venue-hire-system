@@ -6,20 +6,47 @@ import java.util.ArrayList;
 
 public class VenueHireSystem {
 
-  private ArrayList<Venue> VenueList;
+  private ArrayList<Venue> venueList;
 
   public VenueHireSystem() {
-    this.VenueList = new ArrayList<>();
+    this.venueList = new ArrayList<>();
   }
 
   public void printVenues() {
-    switch (this.VenueList.size()) {
+    int venueCount = this.venueList.size();
+    switch (venueCount) {
       case 0:
         MessageCli.NO_VENUES.printMessage();
         break;
       case 1:
         MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
         break;
+      case 2:
+        MessageCli.NUMBER_VENUES.printMessage("are", "two", "s");
+        break;
+      case 3:
+        MessageCli.NUMBER_VENUES.printMessage("are", "three", "s");
+        break;
+      case 4:
+        MessageCli.NUMBER_VENUES.printMessage("are", "four", "s");
+        break;
+      case 5:
+        MessageCli.NUMBER_VENUES.printMessage("are", "five", "s");
+        break;
+      case 6:
+        MessageCli.NUMBER_VENUES.printMessage("are", "six", "s");
+        break;
+      case 7:
+        MessageCli.NUMBER_VENUES.printMessage("are", "seven", "s");
+        break;
+      case 8:
+        MessageCli.NUMBER_VENUES.printMessage("are", "eight", "s");
+        break;
+      case 9:
+        MessageCli.NUMBER_VENUES.printMessage("are", "nine", "s");
+        break;
+      default:
+        MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(venueCount), "s");
     }
   }
 
@@ -53,7 +80,7 @@ public class VenueHireSystem {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
     } else {
       Venue newVenue = new Venue(venueName, venueCode, capacityInput, hireFeeInput);
-      this.VenueList.add(newVenue);
+      this.venueList.add(newVenue);
       MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
     }
 
