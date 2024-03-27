@@ -18,4 +18,12 @@ public class Venue {
     MessageCli.VENUE_ENTRY.printMessage(this.name, this.code, this.capacity, this.hireFee);
   }
 
+  public String getName() {
+    return this.name;
+  }
+
+  public String getCode() {
+    return this.code;
+  }
+
 }

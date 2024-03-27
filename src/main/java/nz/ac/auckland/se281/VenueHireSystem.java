@@ -75,6 +75,13 @@ public class VenueHireSystem {
       return;
     }
 
+    for (Venue venue : venueList) {
+      if (venueCode.equals(venue.getCode())) {
+        MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venue.getName());
+        return;
+      }
+    }
+
     // Checking if the venue name is empty
     if (venueName.strip().isEmpty()) {
       MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
