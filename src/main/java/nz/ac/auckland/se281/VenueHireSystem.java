@@ -8,7 +8,7 @@ public class VenueHireSystem {
   public VenueHireSystem() {}
 
   public void printVenues() {
-    // TODO implement this method
+
   }
 
   public void createVenue(
@@ -47,4 +47,21 @@ public class VenueHireSystem {
   public void viewInvoice(String bookingReference) {
     // TODO implement this method
   }
+}
+
+public class Venue {
+
+  private String name;
+  private String code;
+  private Integer capacityInput;
+  private Integer hireFeeInput; 
+
+  public Venue(name, code, capacityInput, hireFeeInput) {
+    self.name = name;
+    self.code = code;
+    self.capacityInput = capacityInput;
+    self.hireFeeInput = hireFeeInput;
+
+  }
+
 }
