@@ -13,8 +13,13 @@ public class VenueHireSystem {
   }
 
   public void printVenues() {
-    if (this.VenueList.isEmpty()) {
-      MessageCli.NO_VENUES.printMessage();
+    switch (this.VenueList.size()) {
+      case 0:
+        MessageCli.NO_VENUES.printMessage();
+        break;
+      case 1:
+        MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
+        break;
     }
   }
 
