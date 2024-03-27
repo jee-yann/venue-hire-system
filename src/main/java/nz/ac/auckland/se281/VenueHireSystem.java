@@ -21,9 +21,18 @@ public class VenueHireSystem {
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     // TODO implement this method
-    Venue newVenue = new Venue(venueName, venueCode, capacityInput, hireFeeInput);
-    this.VenueList.add(newVenue);
-    MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+
+
+    // Checking if the venue name is empty
+    if (venueName.strip().isEmpty()) {
+      MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
+    } else {
+      Venue newVenue = new Venue(venueName, venueCode, capacityInput, hireFeeInput);
+      this.VenueList.add(newVenue);
+      MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+    }
+
+    
   }
 
   public void setSystemDate(String dateInput) {
