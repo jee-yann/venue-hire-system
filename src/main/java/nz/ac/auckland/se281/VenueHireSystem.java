@@ -48,6 +48,10 @@ public class VenueHireSystem {
       default:
         MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(venueCount), "s");
     }
+
+    for (Venue venue : venueList) {
+      venue.printDetails();
+    }
   }
 
   public void createVenue(

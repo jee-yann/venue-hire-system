@@ -13,4 +13,9 @@ public class Venue {
     this.capacity = capacity;
     this.hireFee = hireFee;
   }
+
+  public void printDetails() {
+    MessageCli.VENUE_ENTRY.printMessage(this.name, this.code, this.capacity, this.hireFee);
+  }
+
 }
