@@ -23,6 +23,7 @@ public class VenueHireSystem {
     // TODO implement this method
     Venue newVenue = new Venue(venueName, venueCode, capacityInput, hireFeeInput);
     this.VenueList.add(newVenue);
+    MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
   }
 
   public void setSystemDate(String dateInput) {
