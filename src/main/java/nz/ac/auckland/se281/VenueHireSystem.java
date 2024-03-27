@@ -22,6 +22,19 @@ public class VenueHireSystem {
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     // TODO implement this method
 
+    try {
+      int capacity = Integer.parseInt(capacityInput);
+    } catch(Exception e) {
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "");
+      return;
+    }
+
+    try {
+      int hireFee = Integer.parseInt(hireFeeInput);
+    } catch(Exception e) {
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
+      return;
+    }
 
     // Checking if the venue name is empty
     if (venueName.strip().isEmpty()) {

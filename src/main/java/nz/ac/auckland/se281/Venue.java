@@ -4,13 +4,13 @@ public class Venue {
 
   private String name;
   private String code;
-  private String capacityInput;
-  private String hireFeeInput; 
+  private String capacity;
+  private String hireFee; 
 
-  public Venue(String name, String code, String capacityInput, String hireFeeInput) {
+  public Venue(String name, String code, String capacity, String hireFee) {
     this.name = name;
     this.code = code;
-    this.capacityInput = capacityInput;
-    this.hireFeeInput = hireFeeInput;
+    this.capacity = capacity;
+    this.hireFee = hireFee;
   }
 }
