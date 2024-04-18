@@ -121,6 +121,13 @@ public class VenueHireSystem {
     String month = dateParts[1];
     String year = dateParts[2];
 
+
+    // Check if system date is set.
+    if (this.systemDate.equals("not set")) {
+      MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+      return;
+    }
+
     for (Venue venue : venueList) {
       if (venue.getCode().equals(code)) {
         MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venue.getName(), date, attendees);
