@@ -128,6 +128,12 @@ public class VenueHireSystem {
       return;
     }
 
+    // Check if there are any venues in the system.
+    if (this.venueList.isEmpty()) {
+      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
+      return;
+    }
+
     for (Venue venue : venueList) {
       if (venue.getCode().equals(code)) {
         MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venue.getName(), date, attendees);
