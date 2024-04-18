@@ -195,11 +195,17 @@ public class VenueHireSystem {
     for (Venue venue : venueList) {
       if (venue.getCode().equals(venueCode)) {
         MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venue.getName());
-        for (Booking booking : bookingList) {
-          if (booking.getVenue().equals(venueCode)) {
-            MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(booking.getReference(), booking.getDate());
+
+        if (bookingList.isEmpty()) {
+          MessageCli.PRINT_BOOKINGS_NONE.printMessage(venue.getName());
+        } else {
+          for (Booking booking : bookingList) {
+            if (booking.getVenue().equals(venueCode)) {
+              MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(booking.getReference(), booking.getDate());
+            }
           }
         }
+        return;
       }
     }
   }
