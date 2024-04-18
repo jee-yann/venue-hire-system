@@ -115,16 +115,28 @@ public class VenueHireSystem {
     String email = options[2];
     String attendees = options[3];
 
-    
-    String[] dateParts = date.split("/");
-    String day = dateParts[0];
-    String month = dateParts[1];
-    String year = dateParts[2];
-
-
     // Check if system date is set.
     if (this.systemDate.equals("not set")) {
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+      return;
+    }
+
+    String[] dateParts = date.split("/");
+    int day = Integer.parseInt(dateParts[0]);
+    int month = Integer.parseInt(dateParts[1]);
+    int year = Integer.parseInt(dateParts[2]);
+
+    String[] systemDateParts = this.systemDate.split("/");
+    int systemDay = Integer.parseInt(systemDateParts[0]);
+    int systemMonth = Integer.parseInt(systemDateParts[1]);
+    int systemYear = Integer.parseInt(systemDateParts[2]);
+
+
+    
+
+    // Check if booking date is at/after system date.
+    if ((systemYear > year) || ((systemYear == year) && (systemMonth > month)) || ((systemYear == year) && (systemMonth == month) && (systemDay > day))) {
+      MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(date, systemDate);
       return;
     }
 
