@@ -104,6 +104,9 @@ public class VenueHireSystem {
 
   public void setSystemDate(String dateInput) {
     this.systemDate = dateInput;
+    for (Venue venue : venueList) {
+      venue.updateSystemDate(this.systemDate);
+    }
     MessageCli.DATE_SET.printMessage(systemDate);
   }
 
