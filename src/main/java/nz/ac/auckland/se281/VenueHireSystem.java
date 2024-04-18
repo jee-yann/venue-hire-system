@@ -95,6 +95,7 @@ public class VenueHireSystem {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
     } else {
       Venue newVenue = new Venue(venueName, venueCode, capacityInput, hireFeeInput);
+      newVenue.updateSystemDate(this.systemDate);
       this.venueList.add(newVenue);
       MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
     }
@@ -180,6 +181,7 @@ public class VenueHireSystem {
         MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(reference, venue.getName(), date, Integer.toString(attendees));
         Booking newBooking = new Booking(reference, venue.getCode(), date, Integer.toString(attendees));
         bookingList.add(newBooking);
+        venue.addDate(date);
         return;
       }
     }

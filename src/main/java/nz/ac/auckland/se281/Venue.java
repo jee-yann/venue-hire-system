@@ -19,6 +19,10 @@ public class Venue {
     this.dates = new ArrayList<String>();
   }
 
+  public void addDate(String date) {
+    this.dates.add(date);
+  }
+
   public void updateSystemDate(String date) {
     this.systemDate = date;
   }
@@ -34,8 +38,13 @@ public class Venue {
           int day = Integer.parseInt(dateParts[0]) + 1;
           String month = dateParts[1];
           String year = dateParts[2];
-          nextAvailableDate = (Integer.toString(day) + "/" + month + "/" + year);
+          String dayString = Integer.toString(day);
+          if (day < 10) {
+            dayString = ("0" + dayString);
+          }
+          nextAvailableDate = (dayString + "/" + month + "/" + year);
           dateFound = false;
+          break;
         }
       }
     }
