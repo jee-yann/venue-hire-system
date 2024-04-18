@@ -7,9 +7,11 @@ import java.util.ArrayList;
 public class VenueHireSystem {
 
   private ArrayList<Venue> venueList;
+  private String systemDate;
 
   public VenueHireSystem() {
     this.venueList = new ArrayList<>();
+    this.systemDate = "";
   }
 
   public void printVenues() {
@@ -99,7 +101,8 @@ public class VenueHireSystem {
   }
 
   public void setSystemDate(String dateInput) {
-    // TODO implement this method
+    this.systemDate = dateInput;
+    MessageCli.DATE_SET.printMessage(systemDate);
   }
 
   public void printSystemDate() {
