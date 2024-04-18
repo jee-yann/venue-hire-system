@@ -26,4 +26,8 @@ public class Venue {
     return this.code;
   }
 
+  public String getCapacity() {
+    return this.capacity;
+  }
+
 }

@@ -7,10 +7,12 @@ import java.util.ArrayList;
 public class VenueHireSystem {
 
   private ArrayList<Venue> venueList;
+  private ArrayList<Booking> bookingList;
   private String systemDate;
 
   public VenueHireSystem() {
-    this.venueList = new ArrayList<>();
+    this.venueList = new ArrayList<Venue>();
+    this.bookingList = new ArrayList<Booking>();
     this.systemDate = "not set";
   }
 
@@ -113,7 +115,7 @@ public class VenueHireSystem {
     String code = options[0];
     String date = options[1];
     String email = options[2];
-    String attendees = options[3];
+    int attendees = Integer.parseInt(options[3]);
 
     // Check if system date is set.
     if (this.systemDate.equals("not set")) {
@@ -146,12 +148,39 @@ public class VenueHireSystem {
       return;
     }
 
+    // Check if the venue exists.
     for (Venue venue : venueList) {
       if (venue.getCode().equals(code)) {
-        MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venue.getName(), date, attendees);
+        int capacity = Integer.parseInt(venue.getCapacity());
+
+        // Check if number of attendees is less than 25% or more than 100% of venue capacity.
+        int oldAttendees = attendees;
+        if (attendees < 0.25 * capacity) {
+          attendees = (int) (capacity * 0.25);
+        } else if (attendees > capacity) {
+          attendees = capacity;
+        }
+
+        // Check if the venue is not already booked on the same day.
+        for (Booking booking : bookingList) {
+          if (booking.getVenue().equals(venue.getCode()) && booking.getDate().equals(date)) {
+            MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venue.getName(), date);
+            return;
+          }
+        }
+
+
+        if (oldAttendees != attendees) {
+          MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(Integer.toString(oldAttendees), Integer.toString(attendees), Integer.toString(capacity));
+        }
+        String reference = BookingReferenceGenerator.generateBookingReference();
+        MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(reference, venue.getName(), date, Integer.toString(attendees));
+        Booking newBooking = new Booking(reference, venue.getCode(), date, Integer.toString(attendees));
+        bookingList.add(newBooking);
         return;
       }
     }
+
     
     MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(code);
 
