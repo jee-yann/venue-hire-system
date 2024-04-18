@@ -110,8 +110,29 @@ public class VenueHireSystem {
   }
 
   public void makeBooking(String[] options) {
-    // TODO implement this method
+    String code = options[0];
+    String date = options[1];
+    String email = options[2];
+    String attendees = options[3];
+
+    
+    String[] dateParts = date.split("/");
+    String day = dateParts[0];
+    String month = dateParts[1];
+    String year = dateParts[2];
+
+    for (Venue venue : venueList) {
+      if (venue.getCode().equals(code)) {
+        MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venue.getName(), date, attendees);
+        return;
+      }
+    }
+    
+    MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(code);
+
+    
   }
+
 
   public void printBookings(String venueCode) {
     // TODO implement this method
