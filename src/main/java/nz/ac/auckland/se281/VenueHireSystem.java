@@ -11,7 +11,7 @@ public class VenueHireSystem {
 
   public VenueHireSystem() {
     this.venueList = new ArrayList<>();
-    this.systemDate = "";
+    this.systemDate = "not set";
   }
 
   public void printVenues() {
@@ -106,7 +106,7 @@ public class VenueHireSystem {
   }
 
   public void printSystemDate() {
-    // TODO implement this method
+    MessageCli.CURRENT_DATE.printMessage(this.systemDate)
   }
 
   public void makeBooking(String[] options) {
