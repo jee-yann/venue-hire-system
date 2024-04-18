@@ -198,7 +198,8 @@ public class VenueHireSystem {
       if (venue.getCode().equals(venueCode)) {
         MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venue.getName());
 
-        if (bookingList.isEmpty()) {
+        // Checking if there are no bookings at the venue.
+        if (venue.getDates().isEmpty()) {
           MessageCli.PRINT_BOOKINGS_NONE.printMessage(venue.getName());
         } else {
           for (Booking booking : bookingList) {

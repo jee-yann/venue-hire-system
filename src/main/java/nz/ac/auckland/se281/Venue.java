@@ -68,4 +68,8 @@ public class Venue {
     return this.capacity;
   }
 
+  public ArrayList<String> getDates() {
+    return this.dates;
+  }
+
 }
