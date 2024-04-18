@@ -192,7 +192,16 @@ public class VenueHireSystem {
 
 
   public void printBookings(String venueCode) {
-    // TODO implement this method
+    for (Venue venue : venueList) {
+      if (venue.getCode().equals(venueCode)) {
+        MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venue.getName());
+        for (Booking booking : bookingList) {
+          if (booking.getVenue().equals(venueCode)) {
+            MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(booking.getReference(), booking.getDate());
+          }
+        }
+      }
+    }
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
