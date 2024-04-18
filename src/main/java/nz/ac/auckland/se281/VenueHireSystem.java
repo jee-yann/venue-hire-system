@@ -106,7 +106,7 @@ public class VenueHireSystem {
   }
 
   public void printSystemDate() {
-    MessageCli.CURRENT_DATE.printMessage(this.systemDate)
+    MessageCli.CURRENT_DATE.printMessage(this.systemDate);
   }
 
   public void makeBooking(String[] options) {
