@@ -255,6 +255,7 @@ public class VenueHireSystem {
   public void viewInvoice(String bookingReference) {
     for (Booking booking : bookingList) {
       if (bookingReference.equals(booking.getReference())) {
+        int totalCost = 0;
         Venue bookedVenue = null;
         for (Venue venue : venueList) {
           if (booking.getVenue().equalsIgnoreCase(venue.getCode())) {
@@ -264,21 +265,22 @@ public class VenueHireSystem {
 
         MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference, booking.getEmail(), booking.getBookingDate(), booking.getPartyDate(), booking.getAttendees(), bookedVenue.getName());
         MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(bookedVenue.getHireFee());
+        totalCost += Integer.parseInt(bookedVenue.getHireFee());
         for (Service service : booking.getServiceList()) {
+          totalCost += Integer.parseInt(service.getTotalCost(booking.getAttendees()));
           switch (service.getServiceType()) {
             case ("Catering"):
               MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(service.getServiceName(), service.getTotalCost(booking.getAttendees()));
               break;
             case ("Music"):
-              MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage(service.getServiceName(), service.getTotalCost(booking.getAttendees()));
+              MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage(service.getTotalCost(booking.getAttendees()));
               break;
             case ("Floral"):
               MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(service.getServiceName(), service.getTotalCost(booking.getAttendees()));
               break;
           }
         
-
-
+        MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(Integer.toString(totalCost));
         }
         return;
       }
