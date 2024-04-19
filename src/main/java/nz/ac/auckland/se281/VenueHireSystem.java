@@ -219,7 +219,7 @@ public class VenueHireSystem {
   public void addCateringService(String bookingReference, CateringType cateringType) {
     for (Booking booking : bookingList) {
       if (bookingReference.equals(booking.getReference())) {
-        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(cateringType.getName(), bookingReference);
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering (" + cateringType.getName() + ")", bookingReference);
         return;
       }
     }
