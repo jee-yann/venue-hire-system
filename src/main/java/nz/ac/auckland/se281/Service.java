@@ -13,6 +13,8 @@ public abstract class Service {
 
   public abstract String getTotalCost(String attendees);
 
+  public abstract String getServiceType();
+
   public String getServiceName() {
     return this.serviceName;
   }

@@ -167,7 +167,7 @@ public class VenueHireSystem {
 
         // Check if the venue is not already booked on the same day.
         for (Booking booking : bookingList) {
-          if (booking.getVenue().equals(venue.getCode()) && booking.getDate().equals(date)) {
+          if (booking.getVenue().equals(venue.getCode()) && booking.getPartyDate().equals(date)) {
             MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venue.getName(), date);
             return;
           }
@@ -179,7 +179,7 @@ public class VenueHireSystem {
         }
         String reference = BookingReferenceGenerator.generateBookingReference();
         MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(reference, venue.getName(), date, Integer.toString(attendees));
-        Booking newBooking = new Booking(reference, venue.getCode(), date, Integer.toString(attendees));
+        Booking newBooking = new Booking(reference, email, venue.getCode(), systemDate, date, Integer.toString(attendees));
         bookingList.add(newBooking);
         venue.addDate(date);
         return;
@@ -204,7 +204,7 @@ public class VenueHireSystem {
         } else {
           for (Booking booking : bookingList) {
             if (booking.getVenue().equals(venueCode)) {
-              MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(booking.getReference(), booking.getDate());
+              MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(booking.getReference(), booking.getPartyDate());
             }
           }
         }
@@ -219,6 +219,8 @@ public class VenueHireSystem {
   public void addCateringService(String bookingReference, CateringType cateringType) {
     for (Booking booking : bookingList) {
       if (bookingReference.equals(booking.getReference())) {
+        Service service = new CateringService(cateringType);
+        booking.addService(service);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering (" + cateringType.getName() + ")", bookingReference);
         return;
       }
@@ -229,6 +231,8 @@ public class VenueHireSystem {
   public void addServiceMusic(String bookingReference) {
     for (Booking booking : bookingList) {
       if (bookingReference.equals(booking.getReference())) {
+        Service service = new MusicService();
+        booking.addService(service);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Music", bookingReference);
         return;
       }
@@ -239,6 +243,8 @@ public class VenueHireSystem {
   public void addServiceFloral(String bookingReference, FloralType floralType) {
     for (Booking booking : bookingList) {
       if (bookingReference.equals(booking.getReference())) {
+        Service service = new FloralService(floralType);
+        booking.addService(service);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Floral (" + floralType.getName() + ")", bookingReference);
         return;
       }
@@ -247,7 +253,37 @@ public class VenueHireSystem {
   }
 
   public void viewInvoice(String bookingReference) {
-    // TODO implement this method
+    for (Booking booking : bookingList) {
+      if (bookingReference.equals(booking.getReference())) {
+        Venue bookedVenue = null;
+        for (Venue venue : venueList) {
+          if (booking.getVenue().equalsIgnoreCase(venue.getCode())) {
+            bookedVenue = venue;
+          }
+        }
+    
+        MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference, booking.getEmail(), booking.getBookingDate(), booking.getPartyDate(), booking.getAttendees(), bookedVenue.getName());
+        MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(bookedVenue.getHireFee());
+        for (Service service : booking.getServiceList()) {
+          switch (service.getServiceType()) {
+            case ("Catering"):
+              MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(service.getServiceName(), service.getTotalCost(booking.getAttendees()));
+              break;
+            case ("Music"):
+              MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage(service.getServiceName(), service.getTotalCost(booking.getAttendees()));
+              break;
+            case ("Floral"):
+              MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(service.getServiceName(), service.getTotalCost(booking.getAttendees()));
+              break;
+          }
+        
+
+
+        }
+        return;
+      }
+    }
+    MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
   }
 }
 

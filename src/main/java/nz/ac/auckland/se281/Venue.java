@@ -68,6 +68,10 @@ public class Venue {
     return this.capacity;
   }
 
+  public String getHireFee() {
+    return this.hireFee;
+  }
+
   public ArrayList<String> getDates() {
     return this.dates;
   }

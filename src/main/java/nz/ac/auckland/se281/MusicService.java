@@ -13,4 +13,9 @@ public class MusicService extends Service{
     return "500";
   }
 
+  @Override
+  public String getServiceType() {
+    return "Music";
+  }
+
 }

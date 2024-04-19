@@ -16,4 +16,9 @@ public class CateringService extends Service{
     return (Integer.toString(cateringType.getCostPerPerson() * Integer.parseInt(attendees)));
   }
 
+  @Override
+  public String getServiceType() {
+    return "Catering";
+  }
+
 }

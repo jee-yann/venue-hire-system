@@ -16,4 +16,9 @@ public class FloralService extends Service{
     return (Integer.toString(floralType.getCost()));
   }
 
+  @Override
+  public String getServiceType() {
+    return "Floral";
+  }
+
 }
