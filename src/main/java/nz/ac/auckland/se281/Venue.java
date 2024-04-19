@@ -1,4 +1,5 @@
 package nz.ac.auckland.se281;
+
 import java.util.ArrayList;
 
 public class Venue {
@@ -30,6 +31,8 @@ public class Venue {
   public String getNextAvailableDate() {
     String nextAvailableDate = systemDate;
     Boolean dateFound = false;
+
+    // Keep incrementing the day by one until unique date is found.
     while (!dateFound) {
       dateFound = true;
       for (String date : this.dates) {
@@ -39,9 +42,13 @@ public class Venue {
           String month = dateParts[1];
           String year = dateParts[2];
           String dayString = Integer.toString(day);
+
+          // Add a trailing 0 if day in date is single digit.
           if (day < 10) {
             dayString = ("0" + dayString);
           }
+
+          // Combine into string again.
           nextAvailableDate = (dayString + "/" + month + "/" + year);
           dateFound = false;
           break;
