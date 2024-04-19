@@ -60,7 +60,8 @@ public class Venue {
   }
 
   public void printDetails() {
-    MessageCli.VENUE_ENTRY.printMessage(this.name, this.code, this.capacity, this.hireFee, this.getNextAvailableDate());
+    MessageCli.VENUE_ENTRY.printMessage(this.name, this.code, this.capacity, 
+                                        this.hireFee, this.getNextAvailableDate());
   }
 
   public String getName() {

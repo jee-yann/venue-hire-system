@@ -13,7 +13,7 @@ public class Booking {
   private ArrayList<Service> serviceList;
 
   public Booking(String reference, String email, String venue, 
-  String bookingDate, String partyDate, String attendees) {
+                 String bookingDate, String partyDate, String attendees) {
     this.reference = reference;
     this.email = email;
     this.venue = venue;

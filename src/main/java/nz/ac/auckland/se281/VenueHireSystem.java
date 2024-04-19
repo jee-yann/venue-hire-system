@@ -70,17 +70,17 @@ public class VenueHireSystem {
     int hireFee;
 
     // Validate capacity is a number.
-    try {
+    try { 
       capacity = Integer.parseInt(capacityInput);
-    } catch(Exception e) {
+    } catch(Exception e) {  
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "");
       return;
-    }
+    } 
 
     // Validate hiring fee is a number.
     try {
       hireFee = Integer.parseInt(hireFeeInput);
-    } catch(Exception e) {
+    } catch(Exception e) {  
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
       return;
     }
@@ -151,9 +151,9 @@ public class VenueHireSystem {
 
 
     // Check if booking date is at/after system date.
-    if ((systemYear > year) || ((systemYear == year) && 
-    (systemMonth > month)) || ((systemYear == year) && 
-    (systemMonth == month) && (systemDay > day))) {
+    if ((systemYear > year) || 
+        ((systemYear == year) && (systemMonth > month)) || 
+        ((systemYear == year) && (systemMonth == month) && (systemDay > day))) {
       MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(date, systemDate);
       return;
     }
@@ -194,7 +194,7 @@ public class VenueHireSystem {
         MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(reference, venue.getName(), 
         date, Integer.toString(attendees));
         Booking newBooking = new Booking(reference, email, venue.getCode(), systemDate, 
-        date, Integer.toString(attendees));
+                                         date, Integer.toString(attendees));
         bookingList.add(newBooking);
         venue.addDate(date);
         return;
@@ -220,7 +220,7 @@ public class VenueHireSystem {
           for (Booking booking : bookingList) {
             if (booking.getVenue().equals(venueCode)) {
               MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(booking.getReference(), 
-              booking.getPartyDate());
+                                                           booking.getPartyDate());
             }
           }
         }
@@ -240,7 +240,7 @@ public class VenueHireSystem {
         Service service = new CateringService(cateringType);
         booking.addService(service);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering (" + cateringType.getName() + ")", 
-        bookingReference);
+                                                       bookingReference);
         return;
       }
     }
@@ -269,7 +269,7 @@ public class VenueHireSystem {
         Service service = new FloralService(floralType);
         booking.addService(service);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Floral (" + floralType.getName() + ")", 
-        bookingReference);
+                                                       bookingReference);
         return;
       }
     }
@@ -290,7 +290,8 @@ public class VenueHireSystem {
 
         // Print top half of invoice.
         MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference, booking.getEmail(), 
-        booking.getBookingDate(), booking.getPartyDate(), booking.getAttendees(), bookedVenue.getName());
+                                                         booking.getBookingDate(), booking.getPartyDate(), 
+                                                         booking.getAttendees(), bookedVenue.getName());
         MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(bookedVenue.getHireFee());
         totalCost += Integer.parseInt(bookedVenue.getHireFee());
 
@@ -300,14 +301,14 @@ public class VenueHireSystem {
           switch (service.getServiceType()) {
             case ("Catering"):
               MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(service.getServiceName(), 
-              service.getTotalCost(booking.getAttendees()));
+                                                                     service.getTotalCost(booking.getAttendees()));
               break;
             case ("Music"):
               MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage(service.getTotalCost(booking.getAttendees()));
               break;
             case ("Floral"):
               MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(service.getServiceName(), 
-              service.getTotalCost(booking.getAttendees()));
+                                                                   service.getTotalCost(booking.getAttendees()));
               break;
           }
         
