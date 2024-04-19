@@ -7,7 +7,7 @@ public class CateringService extends Service{
   private CateringType cateringType;
 
   public CateringService(CateringType cateringType) {
-    super("Catering (" + cateringType.getName() + ")");
+    super(cateringType.getName());
     this.cateringType = cateringType;
   }
 

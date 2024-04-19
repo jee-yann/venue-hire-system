@@ -261,7 +261,7 @@ public class VenueHireSystem {
             bookedVenue = venue;
           }
         }
-    
+
         MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference, booking.getEmail(), booking.getBookingDate(), booking.getPartyDate(), booking.getAttendees(), bookedVenue.getName());
         MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(bookedVenue.getHireFee());
         for (Service service : booking.getServiceList()) {

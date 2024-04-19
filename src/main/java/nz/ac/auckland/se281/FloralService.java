@@ -7,7 +7,7 @@ public class FloralService extends Service{
   private FloralType floralType;
 
   public FloralService(FloralType floralType) {
-    super("Floral (" + floralType.getName() + ")");
+    super(floralType.getName());
     this.floralType = floralType;
   }
 
